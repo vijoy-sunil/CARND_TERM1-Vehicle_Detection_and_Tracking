@@ -2,7 +2,7 @@
 **Vehicle Detection Project**
 
 <p align="center"> 
-<img src="./sample_imgs/project_vid.gif" width = "720">
+<img src="./misc/project_vid.gif" width = "720">
 </p>
 
 The goals / steps of this project are the following:
