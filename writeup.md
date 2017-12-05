@@ -80,7 +80,7 @@ The image below shows the result of `find_cars` on one of the test images, using
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Here are six frames and their corresponding heatmaps with resulting bounding boxes
+Here are six frames and their corresponding heatmaps with resulting bounding boxes. The following images is configured with search window scale of 1.0, 1.5, 2 and 3.5.
 
 ![alt text][image3]
 ![alt text][image4]
@@ -95,14 +95,11 @@ Here are six frames and their corresponding heatmaps with resulting bounding box
 Here's a [link to my video result](./output_videos/project_output.mp4)
 
 ### Adding Heatmaps and Bounding Boxes
-The add_heat function increments the pixel value (referred to as "heat") of an all-black image the size of the original image at the location of each detection rectangle. Areas encompassed by more overlapping rectangles are assigned higher levels of heat
+The `add_heat` function increments the pixel value (referred to as "heat") of an all-black image the size of the original image at the location of each detection rectangle. Areas encompassed by more overlapping rectangles are thus assigned higher levels of heat
 
-
-A threshold is applied to the heatmap (in this example, with a value of 1), setting all pixels that don't exceed the threshold to zero.
+Then, a threshold is applied to the heatmap setting all pixels that don't exceed the threshold to zero.
 The `scipy.ndimage.measurements.label()` function then collects spatially contiguous areas of the heatmap and assigns each a label.
-And the final detection area is set to the extremities of each identified label.
-
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
+And the final detection area is set to the extremities of each identified label using `draw_labeled_bboxes` function. The heatmaps can be seen in the above series of test_images.
 
 The code for processing frames of video is `process_img`. The class `Vehicle Detect` stores the detections (returned by find_cars) from the previous 15 frames of video using the prev_rects parameter. Rather than performing the heatmap/threshold/label steps for the current frame's detections, the detections for the past 15 frames are combined and added to the heatmap and the threshold for the heatmap is set to 1 + len(det.prev_rects)//2 (one more than half the number of rectangle sets contained in the history).
 
