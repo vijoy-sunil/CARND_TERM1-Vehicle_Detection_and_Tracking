@@ -44,6 +44,7 @@ For this project I used the vehicle (labeled as cars) and non-vehicle (labeled a
 
 ![alt text][image1]
 
+### Extracting HOG features
 The code for extracting HOG features from an image is defined by the function `get_hog_features` and is included in the file `functions.py`. The figure below shows a comparison of a car image and its associated histogram of oriented gradients, as well as the same for a non-car image.
 
 ![alt text][image2]
