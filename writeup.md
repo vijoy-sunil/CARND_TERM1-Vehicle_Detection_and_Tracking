@@ -2,11 +2,11 @@
 [image1]: ./output_images/data_visualization.png
 [image2]: ./output_images/hog_visualization.png
 [image3]: ./output_images/multiscale_detection_testimg1.jpg
-[image4]: ./output_images/multiscale_detection_testimg1.jpg
-[image5]: ./output_images/multiscale_detection_testimg1.jpg
-[image6]: ./output_images/multiscale_detection_testimg1.jpg
-[image7]: ./output_images/multiscale_detection_testimg1.jpg
-[image8]: ./output_images/multiscale_detection_testimg1.jpg
+[image4]: ./output_images/multiscale_detection_testimg2.jpg
+[image5]: ./output_images/multiscale_detection_testimg3.jpg
+[image6]: ./output_images/multiscale_detection_testimg4.jpg
+[image7]: ./output_images/multiscale_detection_testimg5.jpg
+[image8]: ./output_images/multiscale_detection_testimg6.jpg
 
 
 ## Vehicle Detection and Tracking
