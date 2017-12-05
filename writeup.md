@@ -67,7 +67,7 @@ hog_channel = 'ALL' # Can be 0, 1, 2, or "ALL"
 ### Defining a function to extract features from a list of images
 The function `extract_features` accepts a list of image paths, "cars" and "notcars", images and computes HOG parameters as well as color space conversion and produces a flattened array of HOG features for each image in the list.
 
-### Training and testing the HOG Support Vector Classifier and the Color Histogram Support Vector Classifier
+### Training and testing the HOG Support Vector Classifier
 I trained a linear SVM with the defaultclassifier parameters and using HOG features alone (I did not use spatial intensity or channel intensity histogram features) and was able to achieve a test accuracy of `98.4 %`.
 
 ### Sliding Window Implementation
