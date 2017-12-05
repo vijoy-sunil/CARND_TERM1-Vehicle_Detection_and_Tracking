@@ -39,11 +39,11 @@ The goals / steps of this project are the following:
 * `output_videos` : final output video 
 
 ### Loading and Visualizing dataset
-For this project I used the vehicle (labeled as carss) and non-vehicle (labeled as not_cars) datasets provided by Udacity. Here are links to the labeled data for vehicle and non-vehicle examples to train your classifier. These example images come from a combination of the GTI vehicle image database, the KITTI vision benchmark suite, and examples extracted from the project video itself.
+For this project I used the vehicle (labeled as carss) and non-vehicle (labeled as notcars) datasets provided by Udacity. Here are links to the labeled data for [vehicle](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and [non-vehicle](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip) examples to train your classifier.  These example images come from a combination of the [GTI vehicle image database](http://www.gti.ssr.upm.es/data/Vehicle_database.html), the [KITTI vision benchmark suite](http://www.cvlibs.net/datasets/kitti/), and examples extracted from the project video itself.
 
 ![alt text][image1]
 
-The code for extracting HOG features from an image is defined by the function get_hog_features and is included in the file functions.py. The figure below shows a comparison of a car image and its associated histogram of oriented gradients, as well as the same for a non-car image.
+The code for extracting HOG features from an image is defined by the function `get_hog_features` and is included in the file `functions.py`. The figure below shows a comparison of a car image and its associated histogram of oriented gradients, as well as the same for a non-car image.
 
 ![alt text][image2]
 
@@ -51,7 +51,7 @@ The code for extracting HOG features from an image is defined by the function ge
 
 
 ### Defining a function to extract features from a list of images
-The function `extract_features` accepts a list of image paths - "cars" and "not_cars" images and computes HOG parameters as well as color space conversion and produces a flattened array of HOG features for each image in the list.
+The function `extract_features` accepts a list of image paths, "cars" and "notcars", images and computes HOG parameters as well as color space conversion and produces a flattened array of HOG features for each image in the list.
 
 ### Training and testing the HOG Support Vector Classifier and the Color Histogram Support Vector Classifier
 I trained a linear SVM with the defaultclassifier parameters and using HOG features alone (I did not use spatial intensity or channel intensity histogram features) and was able to achieve a test accuracy of `98.4 %`.
@@ -59,12 +59,12 @@ I trained a linear SVM with the defaultclassifier parameters and using HOG featu
 The training time took `2.4 seconds` to complete and the feature vector length using only HOG features was `1188` features
 
 ### Sliding Window Implementation
-The **`slide_window`** function takes in an image, start and stop positions, window size and overlap fraction and returns a list of bounding boxes for the search windows, which will then be passed to draw boxes. Below is an illustration of the **`slide_window`** function with adjusted `y_start_stop` values [400, 656].
+The `slide_window` function takes in an image, start and stop positions, window size and overlap fraction and returns a list of bounding boxes for the search windows, which will then be passed to draw boxes. Below is an illustration of the `slide_window` function with adjusted `y_start_stop` values [400, 656].
 
 ![alt text][image9]
 
 ### Defining a function to extract features from a single image window
-The **`single_img_features`** function is very similar to the *`extract_features`* function. One extracts HOG and color features from a list of images while the other extracts them from one image at a time. The extracted features are passed on to the **`search_windows`** function which searches windows for matches defined by the classifier. The following parameters were used to extact feautures
+The `single_img_features` function is very similar to the *`extract_features`* function. One extracts HOG and color features from a list of images while the other extracts them from one image at a time. The extracted features are passed on to the `search_windows` function which searches windows for matches defined by the classifier. The following parameters were used to extact feautures
 
 ```python
 
