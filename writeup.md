@@ -7,6 +7,7 @@
 [image6]: ./output_images/multiscale_detection_testimg4.jpg
 [image7]: ./output_images/multiscale_detection_testimg5.jpg
 [image8]: ./output_images/multiscale_detection_testimg6.jpg
+[image9]: ./output_images/scale_1_5_detection.png
 
 
 ## Vehicle Detection and Tracking
@@ -49,6 +50,16 @@ The code for extracting HOG features from an image is defined by the function `g
 
 ### Deciding the HOG parameters
 
+The final parameters chosen were YUV colorspace, 11 orientations, 16 pixels per cell, 2 cells per block, and ALL channels of the colorspace.
+
+```python
+
+color_space = 'YUV' # Can be RGB, HSV, LUV, HLS, YUV, YCrCb
+orient = 11  # HOG orientations
+pix_per_cell = 16 # HOG pixels per cell
+cell_per_block = 2 # HOG cells per block
+hog_channel = 'ALL' # Can be 0, 1, 2, or "ALL"
+```
 
 ### Defining a function to extract features from a list of images
 The function `extract_features` accepts a list of image paths, "cars" and "notcars", images and computes HOG parameters as well as color space conversion and produces a flattened array of HOG features for each image in the list.
@@ -59,21 +70,13 @@ I trained a linear SVM with the defaultclassifier parameters and using HOG featu
 The training time took `2.4 seconds` to complete and the feature vector length using only HOG features was `1188` features
 
 ### Sliding Window Implementation
-The `slide_window` function takes in an image, start and stop positions, window size and overlap fraction and returns a list of bounding boxes for the search windows, which will then be passed to draw boxes. Below is an illustration of the `slide_window` function with adjusted `y_start_stop` values [400, 656].
+I used the `find_cars` function from the lesson materials and adapted them to use only HOG features. The method combines HOG feature extraction with a sliding window search, but rather than perform feature extraction on each window individually which can be time consuming, the HOG features are extracted for the specified region of image (`y_start_stop = [400, 656]`) and then these full-image features are subsampled according to the size of the window and then fed to the classifier. 
+
+The method performs the classifier prediction on the HOG features for each window region and returns a list of rectangle objects corresponding to the windows that generated a positive ("car") prediction.
+
+The image below shows the result of `find_cars` on one of the test images, using a single window size of **`1.5`**
 
 ![alt text][image9]
-
-### Defining a function to extract features from a single image window
-The `single_img_features` function is very similar to the *`extract_features`* function. One extracts HOG and color features from a list of images while the other extracts them from one image at a time. The extracted features are passed on to the `search_windows` function which searches windows for matches defined by the classifier. The following parameters were used to extact feautures
-
-```python
-
-color_space = 'YUV' # Can be RGB, HSV, LUV, HLS, YUV, YCrCb
-orient = 11  # HOG orientations
-pix_per_cell = 16 # HOG pixels per cell
-cell_per_block = 2 # HOG cells per block
-hog_channel = 'ALL' # Can be 0, 1, 2, or "ALL"
-```
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
