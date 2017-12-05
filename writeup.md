@@ -105,6 +105,7 @@ The code for processing frames of video is `process_img`. The class `Vehicle_Det
 
 ### Adding count of vehicles in frame
 The `scipy.ndimage.measurements.label()` function returns two tuples, of which label[1] is the number of labels found. This count is displayed on the top left corner of the video. 
+
 ---
 
 ### Discussion
