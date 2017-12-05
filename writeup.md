@@ -89,7 +89,7 @@ Here are six frames and their corresponding heatmaps with resulting bounding box
 ---
 ### Video Implementation
 
-Here's a [link to my video result](./output_videos/project_video.mp4)
+Here's a [link to my video result](./output_videos/project_output.mp4)
 
 ### Adding Heatmaps and Bounding Boxes
 The add_heat function increments the pixel value (referred to as "heat") of an all-black image the size of the original image at the location of each detection rectangle. Areas encompassed by more overlapping rectangles are assigned higher levels of heat
