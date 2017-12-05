@@ -50,6 +50,8 @@ The code for extracting HOG features from an image is defined by the function `g
 
 ### Deciding the HOG parameters
 
+I settled on my final choice of HOG parameters (shown below) based upon the performance of the SVM classifier produced using them. I considered not only the accuracy with which the classifier made predictions on the test dataset, but also the speed at which the classifier is able to make predictions. The YUV colorspace was found to produce less number of false positive detectinons. The training time took `2.4 seconds` to complete and the feature vector length using only HOG features was `1188` features
+
 The final parameters chosen were YUV colorspace, 11 orientations, 16 pixels per cell, 2 cells per block, and ALL channels of the colorspace.
 
 ```python
@@ -66,8 +68,6 @@ The function `extract_features` accepts a list of image paths, "cars" and "notca
 
 ### Training and testing the HOG Support Vector Classifier and the Color Histogram Support Vector Classifier
 I trained a linear SVM with the defaultclassifier parameters and using HOG features alone (I did not use spatial intensity or channel intensity histogram features) and was able to achieve a test accuracy of `98.4 %`.
-
-The training time took `2.4 seconds` to complete and the feature vector length using only HOG features was `1188` features
 
 ### Sliding Window Implementation
 I used the `find_cars` function from the lesson materials and adapted them to use only HOG features. The method combines HOG feature extraction with a sliding window search, but rather than perform feature extraction on each window individually which can be time consuming, the HOG features are extracted for the specified region of image (`y_start_stop = [400, 656]`) and then these full-image features are subsampled according to the size of the window and then fed to the classifier. 
