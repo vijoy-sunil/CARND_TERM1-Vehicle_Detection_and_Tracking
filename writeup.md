@@ -40,7 +40,7 @@ The goals / steps of this project are the following:
 * `output_videos` : final output video 
 
 ### Loading and Visualizing dataset
-For this project I used the vehicle (labeled as carss) and non-vehicle (labeled as notcars) datasets provided by Udacity. Here are links to the labeled data for [vehicle](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and [non-vehicle](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip) examples to train your classifier.  These example images come from a combination of the [GTI vehicle image database](http://www.gti.ssr.upm.es/data/Vehicle_database.html), the [KITTI vision benchmark suite](http://www.cvlibs.net/datasets/kitti/), and examples extracted from the project video itself.
+For this project I used the vehicle (labeled as cars) and non-vehicle (labeled as notcars) datasets provided by Udacity. Here are links to the labeled data for [vehicle](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and [non-vehicle](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip) examples to train your classifier.  These example images come from a combination of the [GTI vehicle image database](http://www.gti.ssr.upm.es/data/Vehicle_database.html), the [KITTI vision benchmark suite](http://www.cvlibs.net/datasets/kitti/), and examples extracted from the project video itself.
 
 ![alt text][image1]
 
@@ -101,8 +101,10 @@ Then, a threshold is applied to the heatmap setting all pixels that don't exceed
 The `scipy.ndimage.measurements.label()` function then collects spatially contiguous areas of the heatmap and assigns each a label.
 And the final detection area is set to the extremities of each identified label using `draw_labeled_bboxes` function. The heatmaps can be seen in the above series of test_images.
 
-The code for processing frames of video is `process_img`. The class `Vehicle Detect` stores the detections (returned by find_cars) from the previous 15 frames of video using the prev_rects parameter. Rather than performing the heatmap/threshold/label steps for the current frame's detections, the detections for the past 15 frames are combined and added to the heatmap and the threshold for the heatmap is set to 1 + len(det.prev_rects)//2 (one more than half the number of rectangle sets contained in the history).
+The code for processing frames of video is `process_img`. The class `Vehicle_Detect` stores the detections (returned by find_cars) from the previous 15 frames of video using the prev_rects parameter. Rather than performing the heatmap/threshold/label steps for the current frame's detections, the detections for the past 15 frames are combined and added to the heatmap and the threshold for the heatmap is set to 1 + len(det.prev_rects)//2 (one more than half the number of rectangle sets contained in the history).
 
+### Adding count of vehicles in frame
+The `scipy.ndimage.measurements.label()` function returns two tuples, of which label[1] is the number of labels found. This count is displayed on the top left corner of the video. 
 ---
 
 ### Discussion
